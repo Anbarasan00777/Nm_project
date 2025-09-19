@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen AI - Intelligent Citizen Engagement Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">CITIZEN AI - INTELLIGENT CITIZEN ENGAGEMENT PLATFORM</h1>
+            <nav class="header__nav">
+                <button class="nav-btn active" data-section="landing">Home</button>
+                <button class="nav-btn" data-section="chat">Chat Assistant</button>
+                <button class="nav-btn" data-section="sentiment">Sentiment Analysis</button>
+                <button class="nav-btn" data-section="dashboard">Dashboard</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Landing Section -->
+        <section id="landing" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h2 class="hero__title">Welcome to Citizen AI</h2>
+                    <p class="hero__subtitle">Revolutionizing government-citizen interaction through intelligent AI technology</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card" onclick="showSection('chat')">
+                            <h3>Real-Time AI Assistant</h3>
+                            <p>Get instant responses to government service queries 24/7</p>
+                            <span class="feature-icon">💬</span>
+                        </div>
+                        
+                        <div class="feature-card" onclick="showSection('sentiment')">
+                            <h3>Sentiment Analysis</h3>
+                            <p>Share your feedback and help us understand citizen sentiment</p>
+                            <span class="feature-icon">📊</span>
+                        </div>
+                        
+                        <div class="feature-card" onclick="showSection('dashboard')">
+                            <h3>Dynamic Dashboard</h3>
+                            <p>Real-time insights for government officials and administrators</p>
+                            <span class="feature-icon">📈</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Assistant Section -->
+        <section id="chat" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>AI Chat Assistant</h2>
+                    <p>Ask questions about government services and get instant responses</p>
+                </div>
+
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="status-indicator">
+                            <span class="status-dot active"></span>
+                            <span>Assistant Available 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                <p>Hello! I'm your AI assistant for government services. How can I help you today?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="suggested-queries">
+                            <button class="suggestion-btn" onclick="sendSuggestedQuery('How do I apply for a passport?')">Passport Application</button>
+                            <button class="suggestion-btn" onclick="sendSuggestedQuery('What are the tax filing deadlines?')">Tax Deadlines</button>
+                            <button class="suggestion-btn" onclick="sendSuggestedQuery('How to report a road issue?')">Report Road Issue</button>
+                        </div>
+                        
+                        <div class="chat-input-wrapper">
+                            <input type="text" id="chatInput" placeholder="Type your question here..." class="form-control">
+                            <button id="sendBtn" class="btn btn--primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sentiment Analysis Section -->
+        <section id="sentiment" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Citizen Sentiment Analysis</h2>
+                    <p>Share your feedback about government services and we'll analyze the sentiment</p>
+                </div>
+
+                <div class="sentiment-container">
+                    <div class="feedback-form">
+                        <div class="form-group">
+                            <label for="feedbackText" class="form-label">Your Feedback</label>
+                            <textarea id="feedbackText" class="form-control" rows="6" placeholder="Share your experience with government services..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="serviceType" class="form-label">Service Category</label>
+                            <select id="serviceType" class="form-control">
+                                <option value="">Select a service</option>
+                                <option value="passport">Passport Services</option>
+                                <option value="tax">Tax Services</option>
+                                <option value="transport">Transport Services</option>
+                                <option value="healthcare">Healthcare Services</option>
+                                <option value="education">Education Services</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <button id="analyzeSentiment" class="btn btn--primary btn--full-width">Analyze Sentiment</button>
+                    </div>
+
+                    <div id="sentimentResult" class="sentiment-result hidden">
+                        <h3>Analysis Result</h3>
+                        <div class="sentiment-display">
+                            <div class="sentiment-badge" id="sentimentBadge"></div>
+                            <div class="sentiment-details">
+                                <p>Sentiment: <span id="sentimentLabel"></span></p>
+                                <p>Confidence: <span id="sentimentConfidence"></span>%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sample-feedback">
+                        <h4>Try these examples:</h4>
+                        <div class="sample-buttons">
+                            <button class="btn btn--outline btn--sm" onclick="loadSample('The passport office staff was very helpful and the process was quick and efficient. Great service!')">Positive Example</button>
+                            <button class="btn btn--outline btn--sm" onclick="loadSample('The website is okay but could be improved. Average experience overall.')">Neutral Example</button>
+                            <button class="btn btn--outline btn--sm" onclick="loadSample('Very disappointed with the slow response time and unhelpful customer service. This was terrible.')">Negative Example</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Government Officials Dashboard</h2>
+                    <p>Real-time insights and citizen engagement analytics</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Key Metrics -->
+                    <div class="metrics-row">
+                        <div class="metric-card">
+                            <h3>Total Interactions</h3>
+                            <div class="metric-value" id="totalInteractions">1,247</div>
+                            <span class="metric-trend positive">+12% this week</span>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h3>Average Sentiment</h3>
+                            <div class="metric-value" id="avgSentiment">7.2/10</div>
+                            <span class="metric-trend positive">+0.3 this month</span>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h3>Active Issues</h3>
+                            <div class="metric-value" id="activeIssues">23</div>
+                            <span class="metric-trend negative">-5 resolved today</span>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row 1 -->
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <h3>Sentiment Distribution</h3>
+                            <div style="position: relative; height: 300px;">
+                                <canvas id="sentimentChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Interaction Trends (Last 7 Days)</h3>
+                            <div style="position: relative; height: 300px;">
+                                <canvas id="trendsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row 2 -->
+                    <div class="charts-row">
+                        <div class="chart-container full-width">
+                            <h3>Service Ratings</h3>
+                            <div style="position: relative; height: 300px;">
+                                <canvas id="ratingsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
